@@ -73,7 +73,7 @@ function Register() {
     }
     if (data.status === true) {
       
-      navigate("/login");
+      navigate("/");
     }
    }
   };

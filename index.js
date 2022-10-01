@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-mongoose.connect('mongodb+srv://AYMON:<AYMON>@cluster0.gq9xpkk.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://AYMON:AYMON@cluster0.gq9xpkk.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser:true,
     useUnifiedtopology:true,
 })

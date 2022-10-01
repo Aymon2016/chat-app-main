@@ -13,11 +13,11 @@ function App() {
    <>
    <Router>
      <Routes>
-          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="/*" element={<PrivateOutlet />}>
             <Route exact path="register" element={<Register />} />
             <Route exact path="setAvatar" element={<SetAvatar />} />
-            <Route exact path="" element={<Chat />} />
+            <Route exact path="chat" element={<Chat />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />
       </Routes>

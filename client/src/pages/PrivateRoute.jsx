@@ -15,7 +15,7 @@ function PrivateOutlet() {
     // },[])
     //   console.log(auth)
     const auth = true;
-  return auth? <Outlet /> : <Navigate to="login" />
+  return auth? <Outlet /> : <Navigate to="" />
 }
 
 export default PrivateOutlet
