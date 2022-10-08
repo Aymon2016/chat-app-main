@@ -1,10 +1,10 @@
-const User = require("../model/userModel");
+const chatUsers = require("../model/userModel");
 const bcrypt = require("bcrypt");
 
 module.exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await chatUsers.findOne({ email });
     if (!user)
       return res.json({ msg: "Incorrect Username or Password", status: false });
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -20,14 +20,15 @@ module.exports.login = async (req, res, next) => {
 module.exports.register = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
-    const usernameCheck = await User.findOne({ username });
+    console.log(username,email,password)
+    const usernameCheck = await chatUsers.findOne({ username });
     if (usernameCheck)
       return res.json({ msg: "Username already used", status: false });
-    const emailCheck = await User.findOne({ email });
+    const emailCheck = await chatUsers.findOne({ email });
     if (emailCheck)
       return res.json({ msg: "Email already used", status: false });
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({
+    const user = await chatUsers.create({
       email,
       username,
       password: hashedPassword,
@@ -42,7 +43,7 @@ module.exports.register = async (req, res, next) => {
 module.exports.getAllUsers = async (req, res, next) => {
   try {
     
-    const users = await User.find({ _id: { $ne: req.params.id } }).select([
+    const users = await chatUsers.find({ _id: { $ne: req.params.id } }).select([
       "email",
       "username",
       "avatarImage",
@@ -58,7 +59,7 @@ module.exports.setAvatar = async (req, res, next) => {
   try {
     const userId = req.params.id;
     const avatarImage = req.body.image;
-    const userData = await User.findByIdAndUpdate(
+    const userData = await chatUsers.findByIdAndUpdate(
       userId,
       {
         isAvatarImageSet: true,
